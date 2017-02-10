@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wikipedia Viewer</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="main-block">
+
+            <h1 class="header">Wiki viewer</h1>
+
+            <form action="" class="search-form">
+                <div class="search-form_container">
+                    <input type="text" class="search-form_target" placeholder="Search in Wikipedia" autofocus />
+                    <button type="submit" role=button class="search-form_button">Search</button>
+                </div>
+                <div>
+                    <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Or click here to read a random article</a>
+                </div>
+            </form>
+
+            <div id="results-block">
+
+            </div>
+
+            <div class="error-message"></div>
+
+        </section>
+
+        <footer>
+            <p class="sign">Made by <a href="https://dandel10n.github.io/">dandel10n</a></p>
+        </footer>
+    </div>
+
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="site.js"></script>
+
+</body>
+</html>
