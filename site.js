@@ -49,6 +49,7 @@ var getSearchResults = function(title) {
 };
 
 function displayResults(data) {
+    clearSearchResults();
     if (data.query) {
         data.query.pages.forEach(function(data) {
             addArticle(data);
@@ -99,7 +100,7 @@ function addArticle(data) {
 }
 
 function clearSearchResults() {
-    $("#result-block").empty();
+    $("#results-block").empty();
     $(".search-form_target").val('');
 }
 
