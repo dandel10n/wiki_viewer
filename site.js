@@ -95,8 +95,6 @@ function addArticle(data) {
         articleDescriptionElement.innerText = articleDescription;
         articleDescriptionElement.classList.add('article_description');
         articleBlock.appendChild(articleDescriptionElement);
-    } else {
-        console.log("ololo")
     }
 }
 
