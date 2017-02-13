@@ -6,7 +6,6 @@
 //3.2.1 если api не работает, отобразить "Something went wrong. Please, try again."
 //4. если ошибок нет, вставить список результатов в ".results-block_content"
 
-
 function start() {
     $(".search-form").on('submit', function(e) {
         e.preventDefault();
@@ -61,41 +60,27 @@ function displayResults(data) {
 
 function addArticle(data) {
 
-    var resultsBlock = document.getElementById('results-block');
-    var articleBlock = document.createElement('a');
-    var pageId = data.pageid;
-    articleBlock.classList.add('article');
-    articleBlock.href = 'http://en.wikipedia.org/?curid=' + pageId;
-    articleBlock.target = '_blank';
+    var articleBlock = $('<a />').attr('class','article');
+    articleBlock.attr('href', 'http://en.wikipedia.org/?curid=' + data.pageid);
+    articleBlock.attr('target', '_blank');
 
-    var articleThumbnail = data.thumbnail;
-    var thumbnailElementBlock = document.createElement('div');
-    thumbnailElementBlock.classList.add('article_image');
-    var thumbnailElement = document.createElement('img');
-    if (articleThumbnail) {
-        thumbnailElement.src = articleThumbnail.source;
+    var thumbnailElementBlock = $('<div />').attr('class', 'article_image');
+    var thumbnailElement = $('<img>');
+    if (data.thumbnail) {
+        thumbnailElement.attr('src', data.thumbnail.source);
     } else {
-        thumbnailElement.src = 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-128.png';
+        thumbnailElement.attr('src', 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-128.png');
     }
-    thumbnailElementBlock.appendChild(thumbnailElement);
-    articleBlock.appendChild(thumbnailElementBlock);
-    resultsBlock.appendChild(articleBlock);
+    thumbnailElementBlock.append(thumbnailElement);
+    articleBlock.append(thumbnailElementBlock);
+    $('#results-block').append(articleBlock);
 
-    var articleText = document.createElement('div');
-    articleText.classList.add('article_text');
-
-    var articleTitle = data.title;
-    var articleTitleElement = document.createElement('p');
-    articleTitleElement.innerText = articleTitle;
-    articleTitleElement.classList.add('article_title');
-    articleBlock.appendChild(articleTitleElement);
+    var articleTitleElement = $('<p />').attr('class', 'article_title').text(data.title);
+    articleBlock.append(articleTitleElement);
 
     if (data.terms) {
-        var articleDescription = data.terms.description[0];
-        var articleDescriptionElement = document.createElement('p');
-        articleDescriptionElement.innerText = articleDescription;
-        articleDescriptionElement.classList.add('article_description');
-        articleBlock.appendChild(articleDescriptionElement);
+        var articleDescriptionElement = $('<p />').attr('class', 'article_description').text(data.terms.description[0]);
+        articleBlock.append(articleDescriptionElement);
     }
 }
 
